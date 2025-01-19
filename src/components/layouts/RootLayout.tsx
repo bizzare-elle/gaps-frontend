@@ -10,7 +10,7 @@ const RootLayout = () => {
       <SideBar />
       <SidebarInset>
         <main className="flex-1 bg-white inset-0">
-          <div className="py-5 px-5 flex justify-end">
+          <div className="py-5 px-8 flex justify-end">
             <div className="flex items-center space-x-2">
               <div>
                 <Avatar className="flex items-center justify-center bg-gray-200">
@@ -18,8 +18,9 @@ const RootLayout = () => {
                   <FaUser className="text-primary" size={20} />
                 </Avatar>
               </div>
-              <div>
+              <div className="flex flex-col">
                 <span className="font-semibold">Jane Doe</span>
+                <span className="text-xs">Dean</span>
               </div>
             </div>
           </div>
