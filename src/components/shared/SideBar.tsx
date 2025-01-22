@@ -46,7 +46,7 @@ const SideBar = () => {
     //   icon: <FaUsers />,
     // },
     // {
-    //   title: "D6epartments",
+    //   title: "Departments",
     //   icon: <FaBuildingColumns />,
     // },
   ];
@@ -55,7 +55,7 @@ const SideBar = () => {
     <Sidebar
       defaultChecked={true}
       collapsible="icon"
-      className={`border-none bg-white &{open ? 'p-2' : 'w-30'}`}
+      className={`border-none bg-white p-2 &{open ? 'p-2' : 'w-40 p-4'}`}
     >
       <SidebarHeader className="bg-white">
         <div className="flex items-center gap-x-2">
@@ -111,14 +111,15 @@ const SideBar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center justify-center">
                 <VscKebabVertical />
+
+                <DropdownMenuContent side="right" className="w-48">
+                  <DropdownMenuItem>
+                    <Link to="dean/profile">Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Logout</DropdownMenuItem>
+                </DropdownMenuContent>
               </DropdownMenuTrigger>
-              <DropdownMenuContent side="right" className="w-48">
-                <DropdownMenuItem>
-                  <Link to="dean/profile">Profile</Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
             </DropdownMenu>
           )}
         </div>
