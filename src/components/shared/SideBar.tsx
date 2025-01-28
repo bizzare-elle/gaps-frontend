@@ -24,8 +24,6 @@ import { VscKebabVertical } from "react-icons/vsc";
 import { IoBook } from "react-icons/io5";
 import { IoIosPaper } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
-// import { FaUsers } from "react-icons/fa";
-// import { FaBuildingColumns } from "react-icons/fa6";
 
 const SideBar = () => {
   const { open } = useSidebar();
@@ -40,24 +38,14 @@ const SideBar = () => {
       icon: <IoIosPaper />,
       url: "dean/assessments",
     },
-
-    // {
-    //   title: "Users",
-    //   icon: <FaUsers />,
-    // },
-    // {
-    //   title: "Departments",
-    //   icon: <FaBuildingColumns />,
-    // },
   ];
 
   return (
     <Sidebar
-      defaultChecked={true}
       collapsible="icon"
-      className={`border-none bg-white p-2 &{open ? 'p-2' : 'w-40 p-4'}`}
+      className={` border-none bg-white p-2 &{open ? 'p-2' : 'w-[400px] p-4'} `}
     >
-      <SidebarHeader className="bg-white">
+      <SidebarHeader className="bg-white p-2">
         <div className="flex items-center gap-x-2">
           <div>
             <img src={gaps} alt="gaps-logo" className="w-[60px]" />
@@ -75,24 +63,14 @@ const SideBar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               {sidebarItems.map((item) => (
-                <SidebarMenuItem className="py-1" key={item.title}>
-                  <SidebarMenuButton className="hover:text-primary" asChild>
-                    <NavLink
-                      key={item.url}
-                      className={({ isActive }) =>
-                        `flex items-center px-4 py-2 rounded-lg transition-all ${
-                          isActive
-                            ? "text-primary bg-secondary-foreground"
-                            : "text-gray-600 hover:text-primary"
-                        }`
-                      }
-                      to={item.url}
-                    >
+                <NavLink to={item.url} key={item.title}>
+                  <SidebarMenuItem className="" key={item.title}>
+                    <SidebarMenuButton className="hover:text-primary inset-0">
                       {item.icon}
                       <span className="ml-2 font-medium">{item.title}</span>
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </NavLink>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
