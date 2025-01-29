@@ -76,10 +76,12 @@ const SideBar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="bg-white p-2 hover:bg-gray-100 rounded-md">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Avatar className={`flex items-center justify-center $(open ? '' : 'w-10')`}>
+            <Avatar
+              className={`flex bg-slate-200 items-center justify-center $(open ? '' : 'w-10')`}
+            >
               <AvatarImage src="nfgernger" alt="avatar icon" />
               <FaUser className="text-primary absolute" size={open ? 20 : 15} />
             </Avatar>
@@ -91,9 +93,9 @@ const SideBar = () => {
                 <VscKebabVertical />
 
                 <DropdownMenuContent side="right" className="w-48">
-                  <DropdownMenuItem>
-                    <Link to="dean/profile">Profile</Link>
-                  </DropdownMenuItem>
+                  <Link to="/dean/profile">
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                  </Link>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>Logout</DropdownMenuItem>
                 </DropdownMenuContent>

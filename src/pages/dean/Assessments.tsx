@@ -1,7 +1,7 @@
 import Headings from "@/components/dean/Headings";
-import CardContainer from "@/components/dean/CardContainer";
 import { Button } from "@/components/ui/button";
 import SearchBar from "@/components/shared/SearchBar";
+import AssessmentCardContainer from "@/components/dean/AssessmentCardContainer";
 
 const Assessments = () => {
   return (
@@ -12,9 +12,9 @@ const Assessments = () => {
       />
       <div className="pt-10 py-5 flex flex-col space-y-4">
         <div className="flex right-0 justify-end">
-          <SearchBar placeholder="Search" />
+          <SearchBar placeholder="Search Assessment" />
         </div>
-        <CardContainer />
+        <AssessmentCardContainer />
       </div>
       <div className="flex justify-between">
         <Button variant="outline">Previous</Button>

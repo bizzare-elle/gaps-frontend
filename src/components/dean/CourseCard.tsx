@@ -1,18 +1,20 @@
-import { Card, CardContent, CardDescription, CardTitle, CardHeader } from "../ui/card";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger, DropdownMenuItem } from "../ui/dropdown-menu";
+import { Card, CardHeader, CardDescription, CardTitle, CardContent } from "../ui/card";
 import { VscKebabVertical } from "react-icons/vsc";
-// import AssessmentDialog from "./AssessmentDialog";
-// import { Dialog, DialogTrigger } from "../ui/dialog";
-// import { Button } from "../ui/button";
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+} from "../ui/dropdown-menu";
 
 interface Props {
   title: string;
   description: string;
-  objective: string;
+  department: string;
+  assessments: number;
 }
 
-const AssessmentCard = ({ title, description, objective }: Props) => {
+const CourseCard = ({ assessments, department, description, title }: Props) => {
   return (
     <Card className="bg-white shadow-md border-none transition-transform duration-300 transform hover:scale-105 hover:shadow-lg">
       <CardHeader>
@@ -43,11 +45,15 @@ const AssessmentCard = ({ title, description, objective }: Props) => {
           </div>
         </div>
       </CardHeader>
+
       <CardContent>
-        <span className="text-[15px]">{objective}</span>
+        <div className="flex justify-between">
+          <span className="text-[12px]">Department: {department}</span>
+          <span className="text-[12px]">Assessments: {assessments}</span>
+        </div>
       </CardContent>
     </Card>
   );
 };
 
-export default AssessmentCard;
+export default CourseCard;

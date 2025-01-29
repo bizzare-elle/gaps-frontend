@@ -1,6 +1,6 @@
 import AssessmentCard from "./AssessmentCard";
 
-const CardContainer = () => {
+const AssessmentCardContainer = () => {
   const assessments = [
     {
       title: "Prelim - Programming 1",
@@ -65,4 +65,4 @@ const CardContainer = () => {
   );
 };
 
-export default CardContainer;
+export default AssessmentCardContainer;
