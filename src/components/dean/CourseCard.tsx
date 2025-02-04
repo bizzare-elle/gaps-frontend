@@ -48,8 +48,12 @@ const CourseCard = ({ assessments, department, description, title }: Props) => {
 
       <CardContent>
         <div className="flex justify-between">
-          <span className="text-[12px]">Department: {department}</span>
-          <span className="text-[12px]">Assessments: {assessments}</span>
+          <span className="text-[12px]">
+            Department: <strong> {department}</strong>
+          </span>
+          <span className="text-[12px]">
+            Assessments: <strong>{assessments}</strong>
+          </span>
         </div>
       </CardContent>
     </Card>

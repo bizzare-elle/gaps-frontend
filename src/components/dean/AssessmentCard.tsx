@@ -1,18 +1,22 @@
 import { Card, CardContent, CardDescription, CardTitle, CardHeader } from "../ui/card";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger, DropdownMenuItem } from "../ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "../ui/dropdown-menu";
 import { VscKebabVertical } from "react-icons/vsc";
-// import AssessmentDialog from "./AssessmentDialog";
-// import { Dialog, DialogTrigger } from "../ui/dialog";
-// import { Button } from "../ui/button";
-
+import AssessmentViewMoreDialog from "./AssessmentViewMoreDialog";
+import EditAssessmentDialog from "./EditAssessmentDialog";
 
 interface Props {
   title: string;
   description: string;
-  objective: string;
+  mentorAssigned: number;
 }
 
-const AssessmentCard = ({ title, description, objective }: Props) => {
+const AssessmentCard = ({ title, description, mentorAssigned }: Props) => {
   return (
     <Card className="bg-white shadow-md border-none transition-transform duration-300 transform hover:scale-105 hover:shadow-lg">
       <CardHeader>
@@ -28,14 +32,11 @@ const AssessmentCard = ({ title, description, objective }: Props) => {
                   <VscKebabVertical size={20} />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent side="right" className="text-[12px] flex flex-col gap-2">
-                <DropdownMenuItem className="hover:bg-slate-100 p-1 rounded-md">
-                  View More
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-slate-100 p-1 rounded-md">
-                  Edit
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-slate-100 p-1 rounded-md">
+              <DropdownMenuContent side="right" className="text-xs flex flex-col gap-1">
+                <AssessmentViewMoreDialog title={title} description={description} />
+                <DropdownMenuSeparator className="p-0 m-0" />
+                <EditAssessmentDialog /> <DropdownMenuSeparator className="p-0 m-0" />
+                <DropdownMenuItem className="w-full hover:bg-destructive/50 rounded-md">
                   Delete
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -44,7 +45,9 @@ const AssessmentCard = ({ title, description, objective }: Props) => {
         </div>
       </CardHeader>
       <CardContent>
-        <span className="text-[15px]">{objective}</span>
+        <span className="text-[12px]">
+          Number of Mentor Assigned: <strong>{mentorAssigned}</strong>
+        </span>
       </CardContent>
     </Card>
   );

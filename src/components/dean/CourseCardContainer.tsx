@@ -5,44 +5,44 @@ const CourseCardContainer = () => {
     {
       title: "Course 1",
       description: "This is a description",
-      department: "Department 1",
-      asseements: 4,
+      department: "1",
+      assessment: 4,
     },
     {
       title: "Course 2",
       description: "This is a description",
-      department: "Department 2",
-      asseements: 5,
+      department: " 2",
+      assessment: 5,
     },
     {
       title: "Course 3",
       description: "This is a description",
-      department: "Department 3",
-      asseements: 6,
+      department: " 3",
+      assessment: 6,
     },
     {
       title: "Course 4",
       description: "This is a description",
-      department: "Department 4",
-      asseements: 7,
+      department: " 4",
+      assessment: 7,
     },
     {
       title: "Course 2",
       description: "This is a description",
-      department: "Department 2",
-      asseements: 5,
+      department: " 2",
+      assessment: 5,
     },
     {
       title: "Course 3",
       description: "This is a description",
-      department: "Department 3",
-      asseements: 6,
+      department: " 3",
+      assessment: 6,
     },
     {
       title: "Course 4",
       description: "This is a description",
-      department: "Department 4",
-      asseements: 7,
+      department: " 4",
+      assessment: 7,
     },
   ];
 
@@ -55,7 +55,7 @@ const CourseCardContainer = () => {
             title={course.title}
             description={course.description}
             department={course.department}
-            assessments={course.asseements}
+            assessments={course.assessment}
           />
         ))}
       </div>

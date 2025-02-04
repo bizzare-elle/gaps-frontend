@@ -43,31 +43,42 @@ const SideBar = () => {
   return (
     <Sidebar
       collapsible="icon"
-      className={` border-none bg-white p-2 &{open ? 'p-2' : 'w-[400px] p-4'} `}
+      className={`border-none bg-white transition-all duration-300 ${
+        open ? "w-64 p-4" : "w-16 p-2"
+      }`}
     >
-      <SidebarHeader className="bg-white p-2">
+      <SidebarHeader className="bg-white">
         <div className="flex items-center gap-x-2">
-          <div>
-            <img src={gaps} alt="gaps-logo" className="w-[60px]" />
-          </div>
+          <img src={gaps} alt="gaps-logo" className="w-[40px]" />
           {open && (
             <div className="flex flex-col leading-tight">
-              <span className="text-primary font-semibold text-[25px]">GAPS</span>
-              <span className="text-xs">Lorem ipsum, dolor </span>
+              <span className="text-primary font-semibold text-[20px]">GAPS</span>
+              <span className="text-xs">Lorem ipsum, dolor</span>
             </div>
           )}
         </div>
       </SidebarHeader>
-      <SidebarContent className="bg-white">
-        <SidebarGroup className="pt-10">
+
+      <SidebarContent className="bg-white w-full">
+        <SidebarGroup
+          className={`p-0 flex items-center ${open ? "justify-between" : "justify-center"} ${
+            open ? "pt-10" : "pt-14"
+          }`}
+        >
           <SidebarGroupContent>
             <SidebarMenu>
               {sidebarItems.map((item) => (
-                <NavLink to={item.url} key={item.title}>
-                  <SidebarMenuItem className="" key={item.title}>
-                    <SidebarMenuButton className="hover:text-primary inset-0">
-                      {item.icon}
-                      <span className="ml-2 font-medium">{item.title}</span>
+                <NavLink to={item.url} key={item.title} className="w-full">
+                  <SidebarMenuItem className="w-full">
+                    <SidebarMenuButton
+                      className={`hover:text-primary flex w-full rounded-md p-2 transition-all duration-300 ${
+                        open ? "justify-start gap-3" : "justify-center"
+                      }`}
+                    >
+                      <div className="flex justify-center items-center w-10 h-10">
+                        <span className="text-lg">{item.icon}</span>
+                      </div>
+                      {open && <span className="font-medium">{item.title}</span>}
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </NavLink>
@@ -76,22 +87,23 @@ const SideBar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="bg-white p-2 hover:bg-gray-100 rounded-md">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+
+      <SidebarFooter className="bg-white p-1 hover:bg-sidebar-accent duration-200 rounded-md">
+        <div className={`flex items-center ${open ? "justify-between" : "justify-center"}`}>
+          <div className={`flex items-center ${open ? "space-x-1" : "justify-center w-full"}`}>
             <Avatar
-              className={`flex bg-slate-200 items-center justify-center $(open ? '' : 'w-10')`}
+              className={`bg-slate-100 flex items-center justify-center ${open ? "w-10 h-10" : "w-7 h-7"}`}
             >
               <AvatarImage src="nfgernger" alt="avatar icon" />
-              <FaUser className="text-primary absolute" size={open ? 20 : 15} />
+              <FaUser className="text-primary absolute" size={open ? 18 : 15} />
             </Avatar>
-            {open && <span className="font-semibold">Dean</span>}
+            {open && <span className="font-semibold text-sm">Dean</span>}
           </div>
+
           {open && (
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center justify-center">
                 <VscKebabVertical />
-
                 <DropdownMenuContent side="right" className="w-48">
                   <Link to="/dean/profile">
                     <DropdownMenuItem>Profile</DropdownMenuItem>

@@ -5,47 +5,47 @@ const AssessmentCardContainer = () => {
     {
       title: "Prelim - Programming 1",
       description: "This is a description",
-      objective: "This is an objective",
+      mentorAssigned: 20,
     },
     {
       title: "Midterm - Programming 1",
       description: "This is a description",
-      objective: "This is an objective",
+      mentorAssigned: 20,
     },
     {
       title: "Finals - Programming 1",
       description: "This is a description",
-      objective: "This is an objective",
+      mentorAssigned: 20,
     },
     {
       title: "Prelim - Web development",
       description: "This is a description",
-      objective: "This is an objective",
+      mentorAssigned: 20,
     },
     {
       title: "Midterm - Web development",
       description: "This is a description",
-      objective: "This is an objective",
+      mentorAssigned: 20,
     },
     {
       title: "Finals - Web development",
       description: "This is a description",
-      objective: "This is an objective",
+      mentorAssigned: 20,
     },
     {
       title: "Prelim - Database management",
       description: "This is a description",
-      objective: "This is an objective",
+      mentorAssigned: 20,
     },
     {
       title: "Midterm - Database management",
       description: "This is a description",
-      objective: "This is an objective",
+      mentorAssigned: 20,
     },
     {
       title: "Finals - Database management",
       description: "This is a description",
-      objective: "This is an objective",
+      mentorAssigned: 20,
     },
   ];
 
@@ -57,7 +57,7 @@ const AssessmentCardContainer = () => {
             key={assessment.title}
             title={assessment.title}
             description={assessment.description}
-            objective={assessment.objective}
+            mentorAssigned={assessment.mentorAssigned}
           />
         ))}
       </div>
