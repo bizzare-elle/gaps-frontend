@@ -9,6 +9,7 @@ import {
 import { VscKebabVertical } from "react-icons/vsc";
 import AssessmentViewMoreDialog from "./AssessmentViewMoreDialog";
 import EditAssessmentDialog from "./EditAssessmentDialog";
+import AssignMentorDialog from "./AssignMentorDialog";
 
 interface Props {
   title: string;
@@ -33,6 +34,8 @@ const AssessmentCard = ({ title, description, mentorAssigned }: Props) => {
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent side="right" className="text-xs flex flex-col gap-1">
+                <AssignMentorDialog />
+                <DropdownMenuSeparator className="p-0 m-0" />
                 <AssessmentViewMoreDialog title={title} description={description} />
                 <DropdownMenuSeparator className="p-0 m-0" />
                 <EditAssessmentDialog /> <DropdownMenuSeparator className="p-0 m-0" />
