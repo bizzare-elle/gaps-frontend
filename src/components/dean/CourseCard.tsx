@@ -5,6 +5,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuItem,
+  DropdownMenuSeparator,
 } from "../ui/dropdown-menu";
 
 interface Props {
@@ -34,9 +35,11 @@ const CourseCard = ({ assessments, department, description, title }: Props) => {
                 <DropdownMenuItem className="hover:bg-slate-100 p-1 rounded-md">
                   View More
                 </DropdownMenuItem>
+                <DropdownMenuSeparator className="p-0 m-0" />
                 <DropdownMenuItem className="hover:bg-slate-100 p-1 rounded-md">
                   Edit
                 </DropdownMenuItem>
+                <DropdownMenuSeparator className="p-0 m-0" />
                 <DropdownMenuItem className="hover:bg-slate-100 p-1 rounded-md">
                   Delete
                 </DropdownMenuItem>
@@ -47,7 +50,7 @@ const CourseCard = ({ assessments, department, description, title }: Props) => {
       </CardHeader>
 
       <CardContent>
-        <div className="flex justify-between">
+        <div className="flex flex-col">
           <span className="text-[12px]">
             Department: <strong> {department}</strong>
           </span>

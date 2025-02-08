@@ -9,7 +9,7 @@ const RootLayout = () => {
     <SidebarProvider>
       <SideBar />
       <SidebarInset>
-        <main className="flex-1 bg-white inset-0">
+        <main className="flex-1 max-h-[90%] bg-white inset-0">
           <div className="py-5 pl-4  pr-8 flex justify-between">
             <div>
               <SidebarTrigger />
@@ -27,7 +27,7 @@ const RootLayout = () => {
               </div>
             </div>
           </div>
-          <div className="h-[100%] w-full bg-secondary-foreground rounded-t-lg p-8">
+          <div className="h-full w-full bg-secondary-foreground rounded-t-lg p-8">
             <Outlet />
           </div>
         </main>

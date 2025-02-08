@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { mentorSchema } from "@/helpers/validations";
+import { useForm, Controller } from "react-hook-form";
 import { CiSearch, CiCalendarDate } from "react-icons/ci";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,8 +18,9 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { Calendar } from "../ui/calendar";
+import { Calendar } from "@/components/ui/calendar";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const mentors = [
   { id: 1, name: "Alice Johnson" },
@@ -26,18 +29,24 @@ const mentors = [
 ];
 
 export default function AssignMentorDialog() {
+  const {
+    watch,
+    setValue,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(mentorSchema),
+    defaultValues: {
+      mentor: "",
+      date: undefined as Date | undefined,
+    },
+  });
+  const today = new Date();
   const [search, setSearch] = useState("");
   const [filteredMentors, setFilteredMentors] = useState(mentors);
   const [selectedMentor, setSelectedMentor] = useState(null);
-  const [date, setDate] = useState<Date | undefined>(undefined);
-  const [popoverOpen, setPopoverOpen] = useState(false);
-
-  const handleDateSelect = (selectedDate: Date | undefined) => {
-    if (selectedDate) {
-      setDate(selectedDate);
-      setPopoverOpen(false);
-    }
-  };
+  const [open, setOpen] = useState(false);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
@@ -53,8 +62,10 @@ export default function AssignMentorDialog() {
     setFilteredMentors([]);
   };
 
+  console.log(errors.date?.message);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <DropdownMenuItem
           onSelect={(e) => e.preventDefault()}
@@ -64,7 +75,7 @@ export default function AssignMentorDialog() {
         </DropdownMenuItem>
       </DialogTrigger>
       <DialogContent>
-        <form>
+        <form onSubmit={handleSubmit((data) => console.log(data))}>
           <DialogHeader>
             <DialogTitle>Assign Mentor</DialogTitle>
             <DialogDescription>Select mentor and date.</DialogDescription>
@@ -83,6 +94,9 @@ export default function AssignMentorDialog() {
                 />
                 <CiSearch size={20} />
               </div>
+              {errors.mentor && (
+                <span className="text-xs text-primary">{errors.mentor.message}</span>
+              )}
               {search && filteredMentors.length > 0 ? (
                 <Card className="absolute w-full bg-white border mt-1 rounded-md shadow-md z-10">
                   {filteredMentors.map((mentor) => (
@@ -106,36 +120,50 @@ export default function AssignMentorDialog() {
               )}
             </div>
 
-            <div className="flex flex-col gap-y-1 w-full">
+            <div className="flex w-full flex-col gap-y-1">
               <Label htmlFor="date">Select Date</Label>
-              <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
+              <Popover>
                 <PopoverTrigger asChild>
                   <Button
-                    onClick={() => setPopoverOpen((prev) => !prev)}
-                    id="date"
-                    variant="outline"
+                    variant={"outline"}
                     className={cn(
-                      "w-full flex items-center justify-between text-left font-normal text-xs",
-                      !date && "text-muted-foreground",
+                      "w-full justify-between text-left font-normal",
+                      !watch("date") && "text-muted-foreground",
                     )}
                   >
-                    <span>{date ? format(date, "PPP") : "Select Date"}</span>
-                    <CiCalendarDate size={20} />
+                    {watch("date") ? (
+                      format(watch("date") as Date, "PPP")
+                    ) : (
+                      <span>Pick a date</span>
+                    )}
+                    <CiCalendarDate />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent
-                  className="w-full p-0"
-                  align="start"
-                  onInteractOutside={(e) => e.preventDefault()}
-                >
-                  <Calendar mode="single" selected={date} onSelect={handleDateSelect} />
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Controller
+                    control={control}
+                    name="date"
+                    render={({ field }) => (
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={(newDate) => {
+                          field.onChange(newDate);
+                          setValue("date", newDate);
+                        }}
+                        defaultMonth={today}
+                        initialFocus
+                      />
+                    )}
+                  />
                 </PopoverContent>
               </Popover>
+              {errors.date && <span className="text-xs text-primary">{errors.date.message}</span>}
             </div>
           </div>
 
           <DialogFooter className="pt-5">
-            <Button type="button" className="bg-primary text-white">
+            <Button type="submit" className="bg-primary text-white">
               Assign
             </Button>
           </DialogFooter>

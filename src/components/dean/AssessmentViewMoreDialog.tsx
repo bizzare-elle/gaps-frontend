@@ -5,10 +5,10 @@ import {
   DialogDescription,
   DialogContent,
   DialogFooter,
-  DialogClose,
   DialogTrigger,
 } from "../ui/dialog";
 import { DropdownMenuItem } from "../ui/dropdown-menu";
+import AssignedMentorsList from "./AssignedMentorsList";
 
 interface Props {
   title: string;
@@ -32,8 +32,8 @@ const AssessmentViewMoreDialog = ({ title, description }: Props) => {
           natus nihil debitis dolore eveniet illo maxime aliquid obcaecati itaque nam, mollitia
           sapiente delectus, quod nostrum vero error.
         </p>
-        <DialogFooter>
-          <DialogClose>Close</DialogClose>
+        <DialogFooter className="pt-5">
+          <AssignedMentorsList />
         </DialogFooter>
       </DialogContent>
     </Dialog>
