@@ -14,3 +14,8 @@ export const mentorSchema = z.object({
     message: "Please select a valid date",
   }),
 });
+
+export const editAssessmentSchema = z.object({
+  title: z.string().min(1, { message: "Please enter a valid assessment title" }),
+  description: z.string().optional(),
+});

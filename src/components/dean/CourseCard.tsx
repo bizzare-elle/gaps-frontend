@@ -7,6 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "../ui/dropdown-menu";
+import CoursesViewMore from "./CoursesViewMore";
+import CoursesEditDialog from "./CoursesEditDialog";
 
 interface Props {
   title: string;
@@ -32,14 +34,9 @@ const CourseCard = ({ assessments, department, description, title }: Props) => {
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent side="right" className="text-[12px] flex flex-col gap-2">
-                <DropdownMenuItem className="hover:bg-slate-100 p-1 rounded-md">
-                  View More
-                </DropdownMenuItem>
+                <CoursesViewMore department={department} />
                 <DropdownMenuSeparator className="p-0 m-0" />
-                <DropdownMenuItem className="hover:bg-slate-100 p-1 rounded-md">
-                  Edit
-                </DropdownMenuItem>
-                <DropdownMenuSeparator className="p-0 m-0" />
+
                 <DropdownMenuItem className="hover:bg-slate-100 p-1 rounded-md">
                   Delete
                 </DropdownMenuItem>
